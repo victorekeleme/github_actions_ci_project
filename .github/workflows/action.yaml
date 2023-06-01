@@ -30,8 +30,8 @@ jobs:
     name: runner / maven build
     runs-on: ubuntu-latest
     outputs:
-        artifactName: ${{ steps.setOutputs.outputs.ARTIFACT_NAME }}
-        artifactVersion: ${{ steps.setOutputs.outputs.ARTIFACT_VERSION }}
+        artifactName: ${{ steps.setOutput1.outputs.ARTIFACT_NAME }}
+        artifactVersion: ${{ steps.setOutput2.outputs.ARTIFACT_VERSION }}
     steps:
       - uses: actions/checkout@v3
       - name: Set up JDK 17
@@ -52,10 +52,10 @@ jobs:
           echo "ARTIFACT_VERSION=$(ls | grep *.jar | sed 's/.jar/''/' |cut -d - -f 4)" >> $GITHUB_ENV
           echo "ARTIFACT_EXT=$(ls | grep *.jar | cut -d . -f 4)" >> $GITHUB_ENV
 
-      - name: setOutputs
-        run: |
-          echo "ARTIFACT_NAME=${{ env.ARTIFACT_NAME }}" >> "$GITHUB_OUTPUT"   
-          echo "ARTIFACT_VERSION=${{ env.ARTIFACT_VERSION }}" >> "$GITHUB_OUTPUT"
+      - name: setOutput1
+        run: echo "ARTIFACT_NAME=${{ env.ARTIFACT_NAME }}" >> "$GITHUB_OUTPUT"   
+      - name: setOutputs2
+        run: echo "ARTIFACT_VERSION=${{ env.ARTIFACT_VERSION }}" >> "$GITHUB_OUTPUT"
         
       - name: Archive maven artifact
         uses: actions/upload-artifact@v2
