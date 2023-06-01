@@ -38,4 +38,10 @@ jobs:
           distribution: 'temurin'
       - name: Build with maven
         run: mvn clean package
+
+      - name: Archive artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: maven-artifact
+          path: target/java-maven-app-*.jar
       
