@@ -77,6 +77,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
+      - name: Download Artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: target/${{ env.ARTIFACT_NAME}}-${{env.ARTIFACT_VERSION }}
+          
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
 
