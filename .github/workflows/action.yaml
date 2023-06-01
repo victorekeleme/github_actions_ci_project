@@ -29,6 +29,7 @@ jobs:
   maven:
     name: runner / maven build
     runs-on: ubuntu-latest
+    needs: checkstyle
     outputs:
         artifactName: ${{ steps.step1.outputs.ARTIFACT_NAME }}
         artifactVersion: ${{ steps.step2.outputs.ARTIFACT_VERSION }}
