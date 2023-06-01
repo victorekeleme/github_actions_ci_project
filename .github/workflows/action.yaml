@@ -80,8 +80,11 @@ jobs:
       - name: Download Artifact
         uses: actions/download-artifact@v2
         with:
-          name: target/${{ env.ARTIFACT_NAME}}-${{env.ARTIFACT_VERSION }}
-          
+          name: ${{ env.ARTIFACT_NAME}}-${{env.ARTIFACT_VERSION }}
+      
+      - name: Copy artifact to target
+        run: cp ${{ env.ARTIFACT_NAME}}-${{env.ARTIFACT_VERSION }}-* target/
+
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
 
