@@ -70,7 +70,9 @@ jobs:
       - env:
           ARTIFACT_NAME: ${{ needs.maven.outputs.artifactName }}
           ARTIFACT_VERSION: ${{ needs.maven.outputs.artifactVersion }}
-        run: echo "$ARTIFACT_NAME $ARTIFACT_VERSION"
+        run: |
+          echo "ARTIFACT_NAME=$ARTIFACT_NAME" >> $GITHUB_ENV
+          echo "ARTIFACT_VERSION=$ARTIFACT_VERSION" >> $GITHUB_ENV
 
       - name: Checkout
         uses: actions/checkout@v3
