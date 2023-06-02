@@ -10,6 +10,7 @@ on:
 
 
 jobs:
+
   # checkstyle:
   #   name: runner / checkstyle
   #   runs-on: ubuntu-latest
@@ -29,7 +30,7 @@ jobs:
   maven:
     name: runner / maven build
     runs-on: ubuntu-latest
-    needs: checkstyle
+    # needs: checkstyle
     outputs:
         artifactName: ${{ steps.step1.outputs.ARTIFACT_NAME }}
         artifactVersion: ${{ steps.step2.outputs.ARTIFACT_VERSION }}
