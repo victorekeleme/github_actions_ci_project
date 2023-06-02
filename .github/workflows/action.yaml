@@ -57,7 +57,18 @@ jobs:
         run: echo "ARTIFACT_NAME=${{ env.ARTIFACT_NAME }}" >> "$GITHUB_OUTPUT"
       - id: step2    
         run: echo "ARTIFACT_VERSION=${{ env.ARTIFACT_VERSION }}" >> "$GITHUB_OUTPUT"
+
+      - name: Print repository name
+        run: echo "${{ github.event.repository.name }}"
         
+      # - name: SonarCloud Scan
+      #   uses: SonarSource/sonarcloud-github-action@master
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  
+      #     SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      #   with:
+      #     projectBaseDir: ${{ github.event.repository.name }}
+
       - name: Archive maven artifact
         uses: actions/upload-artifact@v2
         with:
